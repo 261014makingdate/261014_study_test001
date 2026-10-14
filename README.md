@@ -25,4 +25,10 @@ Windows에서는 Python 설치 시 Tcl/Tk를 포함하세요. Ubuntu/Debian에�
 
 ## 실행 파일 배포 (선택)
 
+### 단일 Windows EXE 다운로드
+
+`main`에 코드를 푸시하면 GitHub Actions의 **Build Windows EXE**가 자동 실행됩니다. 저장소의 **Actions → Build Windows EXE → 성공한 실행 → Artifacts → Calculator-Windows**에서 ZIP을 다운로드하고 압축을 풀어 `Calculator.exe`를 실행하세요. 다운로드에는 GitHub 로그인이 필요할 수 있습니다. EXE 하나만 전달하면 되며 사용자의 PC에는 Python 설치가 필요하지 않습니다. 빌드는 Windows x64용이며 서명되지 않은 파일이라 Windows에서 게시자 확인 경고가 표시될 수 있습니다.
+
+Actions의 **Run workflow**로 다시 빌드할 수도 있습니다. 아티팩트는 90일 동안 보관됩니다. Windows PC에서 직접 만들려면 Python 3.10 이상을 설치한 뒤 `build-windows.bat`를 더블클릭하세요. 결과는 `dist/Calculator.exe`입니다.
+
 대상 운영체제에서 `python -m pip install pyinstaller` 후 `python -m PyInstaller --onefile --windowed --name Calculator desktop.py`를 실행하세요. 결과는 `dist/`에 생성됩니다. Windows용은 Windows에서, macOS용은 macOS에서 빌드해야 합니다. PyInstaller는 배포할 때만 필요한 선택 의존성입니다.
