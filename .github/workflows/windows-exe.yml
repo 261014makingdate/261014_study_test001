@@ -27,16 +27,10 @@ jobs:
       - name: Smoke test packaged desktop application
         shell: pwsh
         run: |
-          $process = Start-Process -FilePath dist/Calculator.exe -PassThru
+          $process = Start-Process -FilePath dist/Calculator.exe -ArgumentList '--smoke-test' -PassThru
           try {
-            $opened = $false
-            for ($attempt = 0; $attempt -lt 30; $attempt++) {
-              Start-Sleep -Seconds 1
-              $process.Refresh()
-              if ($process.HasExited) { throw "Calculator exited before opening a window." }
-              if ($process.MainWindowHandle -ne 0) { $opened = $true; break }
-            }
-            if (-not $opened) { throw "Calculator window did not open within 30 seconds." }
+            if (-not $process.WaitForExit(60000)) { throw "Packaged smoke test timed out." }
+            if ($process.ExitCode -ne 0) { throw "Packaged smoke test failed: $($process.ExitCode)" }
           } finally {
             $process.Refresh()
             if (-not $process.HasExited) { Stop-Process -Id $process.Id }
