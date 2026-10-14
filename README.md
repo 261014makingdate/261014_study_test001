@@ -31,4 +31,6 @@ Windows에서는 Python 설치 시 Tcl/Tk를 포함하세요. Ubuntu/Debian에�
 
 Actions의 **Run workflow**로 다시 빌드할 수도 있습니다. 아티팩트는 90일 동안 보관됩니다. Windows PC에서 직접 만들려면 Python 3.10 이상을 설치한 뒤 `build-windows.bat`를 더블클릭하세요. 결과는 `dist/Calculator.exe`입니다.
 
+빌드 스크립트는 `py -3`, `python`, `python3` 순으로 Python 3.10 이상을 찾습니다. Python Launcher(`py`)는 필수가 아닙니다. 어떤 명령도 없다면 python.org에서 Python을 설치하면서 **Add python.exe to PATH**와 **Tcl/Tk**를 포함한 뒤 스크립트를 다시 실행하세요. 이미 설치한 경우 설치 프로그램의 Modify로 Tcl/Tk를, 설치 옵션으로 PATH 등록을 확인하세요. 패키지를 내려받기 위한 인터넷 연결도 필요합니다.
+
 대상 운영체제에서 `python -m pip install pyinstaller` 후 `python -m PyInstaller --onefile --windowed --name Calculator desktop.py`를 실행하세요. 결과는 `dist/`에 생성됩니다. Windows용은 Windows에서, macOS용은 macOS에서 빌드해야 합니다. PyInstaller는 배포할 때만 필요한 선택 의존성입니다.
