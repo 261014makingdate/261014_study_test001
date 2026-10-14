@@ -2,7 +2,7 @@
 setlocal
 cd /d "%~dp0"
 set "CALCULATOR_PYTHON="
-call :detect_python "py -3"
+if not defined CALCULATOR_SKIP_LAUNCHER call :detect_python "py -3"
 if not defined CALCULATOR_PYTHON call :detect_python "python"
 if not defined CALCULATOR_PYTHON call :detect_python "python3"
 if not defined CALCULATOR_PYTHON goto missing_python

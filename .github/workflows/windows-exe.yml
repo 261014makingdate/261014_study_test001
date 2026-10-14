@@ -24,10 +24,10 @@ jobs:
         shell: cmd
         env:
           CALCULATOR_BUILD_CI: '1'
+          CALCULATOR_SKIP_LAUNCHER: '1'
         run: |
           where python
-          python -c "import pathlib; pathlib.Path('build-ci.bat').write_text(pathlib.Path('build-windows.bat').read_text().replace('call :detect_python \"py -3\"', 'rem Python Launcher intentionally unavailable in this test'))"
-          call build-ci.bat
+          call build-windows.bat
       - name: Smoke test packaged desktop application
         shell: pwsh
         run: |
